@@ -1,0 +1,59 @@
+<apex:page controller="riotApi" sidebar="false" docType="html-5.0" standardStylesheets="false">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+    </head>
+    <body style="height: 100vh" class="bg-light">
+        <!-- Navbar -->
+        <div class="container-fluid p-0 m-0 bg-dark">
+            <div class="row p-0 m-0">
+                <div class="col-4 pl-2 m-0">
+                    <h1 class="text-white">Riot API</h1>
+                </div>
+                <div class="col-8 p-2 mt-2">
+                    <apex:pageBlock>
+                        <apex:form style="float : right; margin-right: 2%" styleClass="border border-light">
+                            <apex:input html-placeholder="Usuario de ejemplo" type="text" value="{!ending}" styleClass=" bg-light border-0"/>
+                            <apex:commandButton action="{!getSummonerData}" styleClass="bg-light border-0" value="🔎"/>
+                        </apex:form>
+                    </apex:pageBlock>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PageContent-->
+        <apex:pageBlock>
+            <div class="container-fluid p-0 m-0">
+                <div class="row m-4">
+                    <div class="col-3 m-0 float-left">
+                        <img src="{!profileImg}" class="rounded-5 m-3 border border-3 border-dark" width="200" height="200" alt="Summoner Icon image"/>
+                    </div>
+                    <div class="col-9 float-left">
+                        <div class="row col-12 mt-4">
+                            <div class="col-6 float-left">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h1 style="float-left">Nombre:</h1>
+                                    </div>
+                                    <div class="col-6">
+                                        <apex:outputText value=" {!name}" styleClass="h2 text-primary float-left"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 float-left">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h1 style="float-left">Nivel:</h1>
+                                    </div>
+                                    <div class="col-6">
+                                        <apex:outputText value=" {!summonerLevel}" styleClass="h2 text-primary float-left"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr></hr>
+                    </div>
+                </div>
+            </div>
+        </apex:pageBlock>
+    </body>
+</apex:page>
