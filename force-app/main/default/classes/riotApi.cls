@@ -8,9 +8,9 @@ public with sharing class riotApi {
     public long summonerLevel{get;set;}
     public String ending {get;set;}
     public String profileImg {get;set;}
-    public String matchId {get;set;}
-    public String keyAPI = 'RGAPI-89d024a5-4c12-419c-a218-fe9ceb24b3b9';
-
+    public String championName {get;set;}
+    
+    public String keyAPI = 'RGAPI-206351d7-e9d9-499f-9a14-90ad0653319d';
     
     public void getSummonerData(){
         String preEndPoint = 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
@@ -73,10 +73,18 @@ public with sharing class riotApi {
 
         if (response.getStatusCode() == 200) {
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-            Map<String, Object> cosa = (Map<String, Object>) results.get('metadata');
-            matchId = String.valueof(cosa.get('dataVersion'));
+            Map<String, Object> info = (Map<String, Object>) results.get('info');
+            List<Object> participants = (List<Object>) info.get('participants');
 
-            System.debug(matchId);
+            List<Map<String, Object>> mapa = new List<Map<String, Object>>();
+            for (Object obj : participants) {
+                mapa.add((Map<String, Object>)obj);
+            }
+
+            for (Map<String, Object> napa : mapa) {
+                championName = string.valueof(napa.get('championName'));
+                System.debug(championName);
+            }
         }
     }
 }
