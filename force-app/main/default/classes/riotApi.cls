@@ -9,6 +9,7 @@ public with sharing class riotApi {
     public String ending {get;set;}
     public String profileImg {get;set;}
     public String championName {get;set;}
+    public List<String> Games {get;set;}
     
     public String keyAPI = 'RGAPI-206351d7-e9d9-499f-9a14-90ad0653319d';
     
@@ -35,14 +36,14 @@ public with sharing class riotApi {
             profileIconId = Integer.valueof(results.get('profileIconId'));
             profileImg = 'https://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/'+ profileIconId  +'.png';
 
-            List<String> Games = GetGameHistory(puuid);
+            Games = GetGameHistory(puuid);
             for (String game : Games) {
                 GetGame(Game);
             }
         }
     }
 
-    private List<String> GetGameHistory(String puuid){
+    public List<String> GetGameHistory(String puuid){
         String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/'+ puuid + '/ids?start=0&count=20';
 
         Http http = new Http();
@@ -61,7 +62,7 @@ public with sharing class riotApi {
         return games;
     }
 
-    private void GetGame(String GameID){
+    public void GetGame(String GameID){
         String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/' + GameID;
 
         Http http = new Http();
@@ -81,9 +82,10 @@ public with sharing class riotApi {
                 mapa.add((Map<String, Object>)obj);
             }
 
+            System.debug(mapa);
             for (Map<String, Object> napa : mapa) {
                 championName = string.valueof(napa.get('championName'));
-                System.debug(championName);
+                // System.debug(championName);
             }
         }
     }

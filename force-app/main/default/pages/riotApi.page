@@ -51,6 +51,21 @@
                             </div>
                         </div>
                         <hr></hr>
+                        <div>
+                            <apex:repeat value="{!Games}" var="game">
+                                <div class="container overflow-hidden">
+                                    <div class="row gx-5 p-3">
+                                        <div class="col">
+                                            <div class="p-3 border rounded-4 bg-white">
+                                                <apex:repeat value="{!Games}" var="game">
+                                                    
+                                                </apex:repeat>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:repeat>
+                        </div>
                     </div>
                 </div>
             </div>
