@@ -8,8 +8,8 @@ public with sharing class riotApi {
     public long summonerLevel{get;set;}
     public String ending {get;set;}
     public String profileImg {get;set;}
-    public String championName {get;set;}
     public List<String> Games {get;set;}
+    public List<String> champions {get;set;}
     
     public String keyAPI = 'RGAPI-206351d7-e9d9-499f-9a14-90ad0653319d';
     
@@ -83,9 +83,10 @@ public with sharing class riotApi {
             }
 
             for (Map<String, Object> napa : mapa) {
-                championName = string.valueof(napa.get('championName'));
-                System.debug(championName);
+                champions.add(string.valueof(napa.get('championName')));
+
             }
+            System.debug(champions);
         }
     }
 }
