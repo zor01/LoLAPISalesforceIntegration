@@ -82,10 +82,9 @@ public with sharing class riotApi {
                 mapa.add((Map<String, Object>)obj);
             }
 
-            System.debug(mapa);
             for (Map<String, Object> napa : mapa) {
                 championName = string.valueof(napa.get('championName'));
-                // System.debug(championName);
+                System.debug(championName);
             }
         }
     }

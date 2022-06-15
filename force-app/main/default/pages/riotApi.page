@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-8 p-2 mt-2">
                     <apex:pageBlock>
-                        <apex:form style="float : right; margin-right: 2%" styleClass="border border-light">
+                        <apex:form style="float : right; margin-right: 2%" styleClass="border border-dark shadow">
                             <apex:input html-placeholder="Usuario de ejemplo" type="text" value="{!ending}" styleClass=" bg-light border-0"/>
                             <apex:commandButton action="{!getSummonerData}" styleClass="bg-light border-0" value="🔎"/>
                         </apex:form>
@@ -23,11 +23,11 @@
         <!-- PageContent-->
         <apex:pageBlock>
             <div class="container-fluid p-0 m-0">
-                <div class="row m-4">
-                    <div class="col-3 m-0 float-left">
-                        <img src="{!profileImg}" class="rounded-5 m-3 border border-3 border-dark" width="200" height="200" alt="Summoner Icon image"/>
+                <div class="row m-0">
+                    <div class="col-2 float-left">
+                        <img src="{!profileImg}" class="rounded-5 m-5 border border-3 border-light" width="200" height="200" alt="Summoner Icon image"/>
                     </div>
-                    <div class="col-9 float-left">
+                    <div class="col-10 float-left">
                         <div class="row col-12 mt-4">
                             <div class="col-6 float-left">
                                 <div class="row">
@@ -58,7 +58,7 @@
                                         <div class="col">
                                             <div class="p-3 border rounded-4 bg-white">
                                                 <apex:repeat value="{!Games}" var="game">
-                                                    
+                                                    misma variable para todas las weas pero cada 5 termina el loop
                                                 </apex:repeat>
                                             </div>
                                         </div>
