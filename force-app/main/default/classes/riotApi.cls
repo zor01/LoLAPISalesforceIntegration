@@ -8,22 +8,25 @@ public with sharing class riotApi {
     public long summonerLevel{get;set;}
     public String ending {get;set;}
     public String profileImg {get;set;}
-    public List<String> Games {get;set;}
+    public List<String> games {get;set;}
     public List<String> champions {get;set;}
+    public List<String> campeones = new List<String>();
+    public boolean rendered {get;set;}
     
-    public String keyAPI = 'RGAPI-206351d7-e9d9-499f-9a14-90ad0653319d';
+    public String keyAPI = 'RGAPI-8e339a82-b945-477e-b432-9e01db9c7f01';
     
     public void getSummonerData(){
         String preEndPoint = 'https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/';
         String endpoint = preEndPoint + ending;
-
+        rendered = true;
+        
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndPoint(endPoint);
         request.setMethod('GET');
         request.setHeader('X-Riot-Token', keyAPI);
         HTTPResponse response = http.send(request);
-
+        
         if (response.getStatusCode() == 200) {
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
             accountId = String.valueof(results.get('accountId'));
@@ -36,15 +39,15 @@ public with sharing class riotApi {
             profileIconId = Integer.valueof(results.get('profileIconId'));
             profileImg = 'https://ddragon.leagueoflegends.com/cdn/12.10.1/img/profileicon/'+ profileIconId  +'.png';
 
-            Games = GetGameHistory(puuid);
+            Games = getGameHistory(puuid);
             for (String game : Games) {
-                GetGame(Game);
+                champions = getGame(game);
             }
         }
     }
 
-    public List<String> GetGameHistory(String puuid){
-        String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/'+ puuid + '/ids?start=0&count=20';
+    public List<String> getGameHistory(String puuid){
+        String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/'+ puuid + '/ids?start=0&count=5';
 
         Http http = new Http();
         HttpRequest request = new HttpRequest();
@@ -62,8 +65,8 @@ public with sharing class riotApi {
         return games;
     }
 
-    public void GetGame(String GameID){
-        String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/' + GameID;
+    public List<String> getGame(String gameID){
+        String endPoint = 'https://europe.api.riotgames.com/lol/match/v5/matches/' + gameID;
 
         Http http = new Http();
         HttpRequest request = new HttpRequest();
@@ -83,10 +86,11 @@ public with sharing class riotApi {
             }
 
             for (Map<String, Object> napa : mapa) {
-                champions.add(string.valueof(napa.get('championName')));
-
+                campeones.add('http://ddragon.leagueoflegends.com/cdn/12.11.1/img/champion/' + String.valueof(napa.get('championName')) + '.png');
             }
-            System.debug(champions);
+            return campeones;
+        } else{
+            return null;
         }
     }
 }

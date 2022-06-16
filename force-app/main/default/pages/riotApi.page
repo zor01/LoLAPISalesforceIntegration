@@ -21,7 +21,7 @@
         </div>
         
         <!-- PageContent-->
-        <apex:pageBlock>
+        <apex:pageBlock rendered="{!rendered}">
             <div class="container-fluid p-0 m-0">
                 <div class="row m-0">
                     <div class="col-2 float-left">
@@ -52,20 +52,57 @@
                         </div>
                         <hr></hr>
                         <div>
-                            <apex:repeat value="{!Games}" var="game">
-                                <div class="container overflow-hidden">
-                                    <div class="row gx-5 p-3">
-                                        <div class="col">
-                                            <div class="p-3 border rounded-4 bg-white">
-                                                <apex:repeat value="{!champions}" var="champion">
-                                                    <!-- misma variable para todas las weas pero cada 10 termina el loop -->
-                                                    <!-- <apex:outputText value="{!champion}"/> -->
-                                                </apex:repeat>
-                                            </div>
-                                        </div>
+                            <h1 style="float-left">Historial de partidas:</h1>
+                            <div class="row gx-5 p-3">
+                                <div class="col">
+                                    <apex:outputText value="Game 1" styleClass="h2 text-primary float-left"/>
+                                    <div class="p-3 border rounded-4 bg-white">
+                                        <apex:repeat value="{!champions}" rows="10" first="0" var="champion">
+                                            <img src="{!champion}" width="75" height="75" alt="Champion Image"/>
+                                        </apex:repeat>
                                     </div>
                                 </div>
-                            </apex:repeat>
+                            </div>
+                            <div class="row gx-5 p-3">
+                                <div class="col">
+                                    <apex:outputText value="Game 2" styleClass="h2 text-primary float-left"/>
+                                    <div class="p-3 border rounded-4 bg-white">
+                                        <apex:repeat value="{!champions}" rows="10" first="9" var="champion">
+                                            <img src="{!champion}" width="75" height="75" alt="Champion Image"/>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-5 p-3">
+                                <div class="col">
+                                    <apex:outputText value="Game 3" styleClass="h2 text-primary float-left"/>
+                                    <div class="p-3 border rounded-4 bg-white">
+                                        <apex:repeat value="{!champions}" rows="10" first="19" var="champion">
+                                            <img src="{!champion}" width="75" height="75" alt="Champion Image"/>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-5 p-3">
+                                <div class="col">
+                                    <apex:outputText value="Game 4" styleClass="h2 text-primary float-left"/>
+                                    <div class="p-3 border rounded-4 bg-white">
+                                        <apex:repeat value="{!champions}" rows="10" first="29" var="champion">
+                                            <img src="{!champion}" width="75" height="75" alt="Champion Image"/>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-5 p-3">
+                                <div class="col">
+                                    <apex:outputText value="Game 5" styleClass="h2 text-primary float-left"/>
+                                    <div class="p-3 border rounded-4 bg-white">
+                                        <apex:repeat value="{!champions}" rows="10" first="39" var="champion">
+                                            <img src="{!champion}" width="75" height="75" alt="Champion Image"/>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
